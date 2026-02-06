@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Valentine ?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff0f5;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #btn-oui {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        #btn-non {
+            background-color: #ced4da;
+            color: #495057;
+            position: absolute; /* Crucial pour le déplacement */
+        }
+
+        /* Le gros coeur rose */
+        #heart {
+            display: none;
+            font-size: 200px;
+            color: #ff69b4;
+            animation: beat 1s infinite alternate;
+        }
+
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1 id="question">Veux-tu être ma Valentine ? ❤️</h1>
+        <div class="buttons" id="btn-group">
+            <button id="btn-oui" onclick="accept()">Oui !</button>
+            <button id="btn-non" onmouseover="moveButton()">Non</button>
+        </div>
+    </div>
+
+    <div id="heart">❤️</div>
+
+    <script>
+        function moveButton() {
+            const btn = document.getElementById('btn-non');
+            // Calcule des positions aléatoires dans la fenêtre
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function accept() {
+            // Cache la question et les boutons
+            document.getElementById('question').innerHTML = "Je savais que tu dirais oui ! 😍";
+            document.getElementById('btn-group').style.display = 'none';
+            // Affiche le coeur
+            document.getElementById('heart').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
